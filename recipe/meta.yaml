@@ -6,27 +6,37 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: 2b35246a1098d74163b16cc7779e0abfcbf9036050f4caa258e4fee55eb299cc
+  url: https://github.com/scikit-learn-contrib/metric-learn/archive/refs/tags/v{{ version }}.tar.gz
+  sha256: 267e982a4fa09e706ab571937a8bde6ec67fe7c80daa1013cd0fa785d31f10e8
 
 build:
-  number: 1
-  noarch: python
-  script: {{ PYTHON }} -m pip install . -vv
+  number: 0
+  skip: true  # [py<36]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - pip
-    - python {{ python_min }}
+    - python
+    - setuptools
+    - wheel
   run:
     - numpy >=1.11.0
-    - python >={{ python_min }}
+    - python
     - scikit-learn >=0.21.3
     - scipy >=0.17.0
 
 test:
+  source_files:
+    - test
+    - pytest.ini
   requires:
-    - python {{ python_min }}
+    - pip
+    - pytest
+    - matplotlib-base
+  commands:
+    - pip check
+    - pytest test
   imports:
     - metric_learn
 
@@ -36,7 +46,6 @@ about:
   license_family: MIT
   license_file: LICENSE.txt
   summary: Python implementations of metric learning algorithms
-
   description: metric-learn contains efficient Python implementations of several popular supervised and weakly-supervised metric learning algorithms. As part of scikit-learn-contrib, the API of metric-learn is compatible with scikit-learn, the leading library for machine learning in Python. This allows to use all the scikit-learn
     routines (for pipelining, model selection, etc) with metric learning algorithms through a unified interface.
   doc_url: http://contrib.scikit-learn.org/metric-learn/
