@@ -6,23 +6,21 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/scikit-learn-contrib/metric-learn/archive/refs/tags/v{{ version }}.tar.gz
-  sha256: 267e982a4fa09e706ab571937a8bde6ec67fe7c80daa1013cd0fa785d31f10e8
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: 2b35246a1098d74163b16cc7779e0abfcbf9036050f4caa258e4fee55eb299cc
 
 build:
-  number: 0
-  skip: true  # [py<36]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 1
+  noarch: python
+  script: {{ PYTHON }} -m pip install . -vv
 
 requirements:
   host:
     - pip
-    - python
-    - setuptools
-    - wheel
+    - python {{ python_min }}
   run:
     - numpy >=1.11.0
-    - python
+    - python >={{ python_min }}
     - scikit-learn >=0.21.3
     - scipy >=0.17.0
 
