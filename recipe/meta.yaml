@@ -41,15 +41,15 @@ test:
     - metric_learn
 
 about:
-  home: http://github.com/scikit-learn-contrib/metric-learn
+  home: https://github.com/scikit-learn-contrib/metric-learn
   license: MIT
   license_family: MIT
   license_file: LICENSE.txt
   summary: Python implementations of metric learning algorithms
   description: metric-learn contains efficient Python implementations of several popular supervised and weakly-supervised metric learning algorithms. As part of scikit-learn-contrib, the API of metric-learn is compatible with scikit-learn, the leading library for machine learning in Python. This allows to use all the scikit-learn
     routines (for pipelining, model selection, etc) with metric learning algorithms through a unified interface.
-  doc_url: http://contrib.scikit-learn.org/metric-learn/
-  dev_url: http://github.com/scikit-learn-contrib/metric-learn
+  doc_url: https://contrib.scikit-learn.org/metric-learn/
+  dev_url: https://github.com/scikit-learn-contrib/metric-learn
 
 extra:
   recipe-maintainers:
