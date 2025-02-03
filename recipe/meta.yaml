@@ -11,7 +11,9 @@ source:
 
 build:
   number: 0
-  skip: true  # [py<36]
+  skip: True  # [py<36]
+  # skipping py312 because of missing scikit-learn <1.3.2
+  skip: True  # [py>311]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
